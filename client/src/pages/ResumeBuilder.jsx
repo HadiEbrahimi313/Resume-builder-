@@ -16,6 +16,7 @@ import PersonalInfoForm from "../components/PersonalInfoForm";
 import ResumePreview from "../components/ResumePreview";
 import TemplateSelector from "../components/TemplateSelector";
 import ColorPicker from "../components/ColorPicker";
+import ProfessionalSummaryForm from "../components/ProfessionalSummaryForm";
 
 function ResumeBuilder() {
   const { resumeId } = useParams();
@@ -96,7 +97,15 @@ function ResumeBuilder() {
                       setResumeData((prev) => ({ ...prev, template }))
                     }
                   />
-                  <ColorPicker selectedColor={resumeData.accent_color} onSelectColor={(color) => setResumeData(prev => ({...prev , accent_color: color}))} />
+                  <ColorPicker
+                    selectedColor={resumeData.accent_color}
+                    onSelectColor={(color) =>
+                      setResumeData((prev) => ({
+                        ...prev,
+                        accent_color: color,
+                      }))
+                    }
+                  />
                 </div>
                 <div className="flex items-center">
                   {activeSectionIndex !== 0 && (
@@ -141,6 +150,20 @@ function ResumeBuilder() {
                     }
                     removeBackground={removeBackground}
                     setRemoveBackground={setRemoveBackground}
+                  />
+                )}
+
+                {activeSection.id === "summary" && (
+                  <ProfessionalSummaryForm
+                    data={resumeData.professional_summary}
+                    onChange={(data) =>
+                      setResumeData((prev) => ({
+                        ...prev,
+                        professional_summary: data,
+                      }))
+                    }
+
+                    setResumeData={setResumeData}
                   />
                 )}
               </div>
