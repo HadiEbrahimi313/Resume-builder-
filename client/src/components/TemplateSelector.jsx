@@ -22,7 +22,7 @@ function TemplateSelector({ selectedTemplate, onSelectTemplate }) {
     },
     {
       id: "minimal-image",
-      name: "Minimal",
+      name: "Minimal Image",
       description: "A minimal layout that includes a profile image.",
     },
   ];
