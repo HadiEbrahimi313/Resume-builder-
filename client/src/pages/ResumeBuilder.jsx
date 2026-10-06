@@ -17,6 +17,7 @@ import ResumePreview from "../components/ResumePreview";
 import TemplateSelector from "../components/TemplateSelector";
 import ColorPicker from "../components/ColorPicker";
 import ProfessionalSummaryForm from "../components/ProfessionalSummaryForm";
+import ExperienceForm from "../components/ExperienceForm";
 
 function ResumeBuilder() {
   const { resumeId } = useParams();
@@ -162,8 +163,19 @@ function ResumeBuilder() {
                         professional_summary: data,
                       }))
                     }
-
                     setResumeData={setResumeData}
+                  />
+                )}
+
+                {activeSection.id === "experience" && (
+                  <ExperienceForm
+                    data={resumeData.experience}
+                    onChange={(data) =>
+                      setResumeData((prev) => ({
+                        ...prev,
+                        experience: data,
+                      }))
+                    }
                   />
                 )}
               </div>
