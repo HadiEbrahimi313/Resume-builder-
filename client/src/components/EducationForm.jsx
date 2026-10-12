@@ -1,8 +1,7 @@
 import { GraduationCap, Plus, Trash2 } from "lucide-react";
 
-export default function EducationForm({ data , onChange}) {
-
-    const addEducation = () => {
+export default function EducationForm({ data, onChange }) {
+  const addEducation = () => {
     const newEducation = {
       institution: "",
       degree: "",
@@ -12,8 +11,6 @@ export default function EducationForm({ data , onChange}) {
     };
     onChange([...data, newEducation]);
   };
-
-
 
   const removeEducation = (index) => {
     const updated = data.filter((_, i) => i !== index);
@@ -33,14 +30,16 @@ export default function EducationForm({ data , onChange}) {
           <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900">
             Education
           </h3>
-          <p className="text-sm text-gray-500">Add your educational background</p>
+          <p className="text-sm text-gray-500">
+            Add your educational background
+          </p>
         </div>
         <button
           onClick={addEducation}
           className="flex items-center gap-2 px-3 py-1 text-sm bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors "
         >
           <Plus size={14} />
-          Add Education     
+          Add Education
         </button>
       </div>
 
@@ -110,19 +109,13 @@ export default function EducationForm({ data , onChange}) {
                 />
               </div>
 
-           
-                 <input
-                  value={education.gpa || ""}
-                  onChange={(e) =>
-                    updateEducation(index, "gpa", e.target.value)
-                  }
-                  type="text"
-                  className="px-3 py-2 text-sm"
-                  placeholder="GPA (optional)"
-                />
-              
-
-              
+              <input
+                value={education.gpa || ""}
+                onChange={(e) => updateEducation(index, "gpa", e.target.value)}
+                type="text"
+                className="px-3 py-2 text-sm"
+                placeholder="GPA (optional)"
+              />
             </div>
           ))}
         </div>
