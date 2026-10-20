@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import Resume from "../model/Resume.js";
 
 const generateToken = (userId) => {
-  const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
+  return jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: "7d",
   });
 };
@@ -15,13 +15,13 @@ export const registerUser = async (req, res) => {
 
     // check if required fields are present
     if (!name || !password || !email) {
-      return res.status(400).json("messing required fields");
+      return res.status(400).json({ message: "messing required fields" });
     }
 
     // check if user already exist
     const user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json("User already exist.");
+      return res.status(400).json({ message: "User already exist." });
     }
 
     // create new user
@@ -52,12 +52,12 @@ export const loginUser = async (req, res) => {
     // check if user exist
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json("Invalid email or password");
+      return res.status(400).json({ message: "Invalid email or password" });
     }
 
     // check if password is correct
     if (!user.comparePassword(password)) {
-      return res.status(400).json("Invalid email or password");
+      return res.status(400).json({ message: "Invalid email or password" });
     }
 
     const token = generateToken(user._id);

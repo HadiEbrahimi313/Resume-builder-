@@ -144,6 +144,14 @@ export const uploadResume = async (req, res) => {
     const newResume = await Resume.create({ userId, title, ...parsedData });
     return res.status(200).json({ resumeId: newResume._id });
   } catch (error) {
-    return res.status(404).json({ message: error.message });
+    console.error("Upload resume error:", error);
+    console.error("Status:", error.status);
+    console.error("Code:", error.code);
+
+    return res.status(500).json({
+      message: error.message,
+      status: error.status,
+      code: error.code,
+    });
   }
 };

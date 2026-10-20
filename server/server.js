@@ -7,7 +7,8 @@ import resumeRouter from "./routes/resumeRoutes.js";
 import aiRouter from "./routes/aiRoutes.js";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
+
 
 // Database connection
 await connectDB();
@@ -15,7 +16,11 @@ await connectDB();
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => res.send("Server is live..."));
+
+app.get("/", (req, res) => {
+  console.log("Root route was requested");
+  res.send("Server is live...");
+});
 
 app.use("/api/users", userRouter);
 app.use("/api/resumes", resumeRouter);
